@@ -2,3 +2,5 @@ Import đúng version
 npm install --save-exact express@4.17.1
 Cài lại thư viện:
 npm install
+
+npm install --save-exact body-parser@1.19.0 nodemon@2.0.12 @babel/core@7.15.5 @babel/node@7.15.4 @babel/preset-env@7.15.6

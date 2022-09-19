@@ -1,13 +1,18 @@
-const express = require('express')
+import express from 'express';
+import configViewEngine from './configs/viewEngine.js';
+import path from 'path';
+
 const app = express()
+configViewEngine(app);
+
 const port = 8080
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.render('index.ejs')
 })
 
 app.get('/admin', (req, res) => {
-    res.send('Hello admin!')
+    res.render('admin/index.ejs')
 })
 
 app.listen(port, () => {
