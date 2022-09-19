@@ -1,11 +1,10 @@
 import express from 'express';
+import HomeController from '../Controller/HomeController.js'
 
 let router = express.Router();
 
 const initWebRoute = (app) => {
-    router.get('/', (req, res) => {
-        res.render('index.ejs')
-    })
+    router.get('/', HomeController.getHomePage)
     router.get('/admin', (req, res) => {
         res.render('admin/index.ejs')
     })
