@@ -7,10 +7,100 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+    <div class="topnav">
+        <a class="active" href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+    </div>
+
+    <div style="padding-left:16px">
+        <h2>Top Navigation Example</h2>
+        <p>Some content..</p>
+    </div>
+
     <h1>Hello</h1>
     <%= dataUser %>
-    <img src="images/ct.png" alt="images"/>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (let i = 0; i < dataUser.length; i++) { %>
+        <tr>
+            <th scope="row"><%= dataUser[i].id %></th>
+            <td><%= dataUser[i].firstName %></td>
+            <td><%= dataUser[i].lastName %></td>
+            <td><%= dataUser[i].email %></td>
+            <td><%= dataUser[i].address %></td>
+            <td>
+            <td class="align-center justify-content-center">
+                <a href="" class="btn btn-icon btn-info btn-sm btn-icon-md btn-circle mx-1"
+                   title="Chi tiết">
+                    <i class="fa fa-asterisk"></i>
+                </a>
+                <a href="" class="btn btn-icon btn-success btn-sm btn-icon-md btn-circle mx-1"
+                   title="Sửa">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <span class="btn btn-icon btn-danger delete-btn btn-sm btn-icon-md btn-circle mx-1"
+                      data-toggle="tooltip" data-placement="top" data-id="<%= dataUser[i].id %>" title="Xóa">
+                      <i class="fa fa-trash"></i>
+                </span>
+            </td>
+            </td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+
+    <script>
+        //handle on click delete-btn
+        $(document).on("click", ".delete-btn", function () {
+            var row = $(this).closest("tr");
+            var id = $(this).attr("data-id");
+            console.log(id);
+            swal.fire({
+                title: "Bạn có chắc chắn muốn xóa?",
+                text: "Sau khi xóa, bạn sẽ không thể phục hồi dữ liệu này!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Đồng ý",
+                cancelButtonText: "Hủy bỏ"
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        url: "/delete/" + id,
+                        type: "GET",
+                        success: function (result) {
+                            if (result !== null) {
+                                toastr.success("Xóa thành công");
+                                row.remove();
+                            } else {
+                                toastr.error("Xóa thất bại");
+                            }
+                        },
+                        error: function (e) {
+                            toastr.error("Xóa thất bại");
+                        }
+                    })
+                }
+            });
+        });
+    </script>
 </body>
 </html>
