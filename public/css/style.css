@@ -1,10 +1,24 @@
 h1 {
     color: red;
-    background-color: green;
+}
+
+h1:hover {
+    color: green;
 }
 
 img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
     width: 200px;
-    height: 250px;
-    auto-fit: cover;
+    height: 200px;
+    object-fit: cover;
+    transition: 500ms;
+}
+img:hover {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    transition: 500ms;
 }
