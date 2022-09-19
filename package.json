@@ -24,9 +24,12 @@
     "@babel/preset-env": "7.15.6",
     "body-parser": "1.19.0",
     "bootstrap-icons": "^1.9.1",
+    "cookieparser": "^0.1.0",
     "dotenv": "10.0.0",
     "ejs": "3.1.6",
     "express": "4.17.1",
+    "express-session": "^1.17.3",
+    "express-toastr": "^2.0.2",
     "mysql2": "2.3.1",
     "nodemon": "2.0.12"
   }

@@ -1,6 +1,7 @@
 import connection from "../configs/connectDB";
 
 let getHomePage = (req, res) => {
+    // req.toastr.success('Successfully logged in.', "You're in!");
     let data = [];
     connection.query(
         'SELECT * FROM `users` ',
@@ -15,7 +16,7 @@ let getHomePage = (req, res) => {
                 })
 
             });
-            return res.render('index.ejs', { dataUser: data })
+            return res.render('index.ejs', { req: req, dataUser: data })
         })
 }
 
