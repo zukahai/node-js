@@ -1,0 +1,10 @@
+h1 {
+    color: red;
+    background-color: green;
+}
+
+img {
+    width: 200px;
+    height: 250px;
+    auto-fit: cover;
+}
