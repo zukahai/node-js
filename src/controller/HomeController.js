@@ -10,7 +10,14 @@ let Delete = (req, res) => {
     res.end();
 }
 
+let detail = (req, res) => {
+    let id = req.params.id;
+    res.write('Detail' + id);
+    res.end();
+}
+
 module.exports = {
     getHomePage,
-    Delete
+    Delete,
+    detail
 }
