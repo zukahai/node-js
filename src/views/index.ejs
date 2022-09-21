@@ -18,7 +18,13 @@
 <%- include('includes/menu'); -%>
 
     <div class="container">
+
         <h1>Danh sách người dùng</h1>
+        <% if(message){ %>
+            <%=message.text%>
+        <% } %>
+
+        <a href="/create" class="btn btn-primary">Thêm người dùng</a>
         <table class="table">
             <thead>
             <tr>
