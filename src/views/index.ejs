@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+    <script type="text/javascript" src="js/sweetalert2.all.js"></script>
 </head>
 <body>
 <%=  %>
@@ -64,7 +65,7 @@
             </tbody>
         </table>
     </div>
-    <script type="text/javascript" src="js/sweetalert2.all.js">
+
     <script type="text/javascript">
         $(document).ready(function() {
             toastr.success("Xin chào");
@@ -75,6 +76,7 @@
         $(document).on("click", ".delete-btn", function () {
             var row = $(this).closest("tr");
             var id = $(this).attr("data-id");
+            let urlDelete = (window.location.href + "/delete/").replaceAll('//delete', '/delete') + "";
             console.log(id);
             swal.fire({
                 title: "Bạn có chắc chắn muốn xóa?",
@@ -88,7 +90,7 @@
             }).then(function (result) {
                 if (result.value) {
                     $.ajax({
-                        url: "/delete/" + id,
+                        url: urlDelete,
                         type: "GET",
                         success: function (result) {
                             if (result !== null) {

@@ -8,7 +8,8 @@ const initWebRoute = (app) => {
     router.get('/admin', (req, res) => {
         res.render('admin/index.ejs')
     })
-    return app.use('/', router)
+    router.get('/delete', HomeController.Delete)
+    return app.use('/admin', router)
 }
 
 export default initWebRoute;
