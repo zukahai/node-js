@@ -22,53 +22,48 @@
         <a href="#about">About</a>
     </div>
 
-    <div style="padding-left:16px">
-        <h2>Top Navigation Example</h2>
-        <p>Some content..</p>
+    <div class="container">
+        <h1>Danh sách người dùng</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">FirstName</th>
+                <th scope="col">LastName</th>
+                <th scope="col">Email</th>
+                <th scope="col">Address</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for (let i = 0; i < dataUser.length; i++) { %>
+            <tr>
+                <th scope="row"><%= dataUser[i].id %></th>
+                <td><%= dataUser[i].firstName %></td>
+                <td><%= dataUser[i].lastName %></td>
+                <td><%= dataUser[i].email %></td>
+                <td><%= dataUser[i].address %></td>
+                <td>
+                <td class="align-center justify-content-center">
+                    <a href="" class="btn btn-icon btn-info btn-sm btn-icon-md btn-circle mx-1"
+                       title="Chi tiết">
+                        <i class="fa fa-asterisk"></i>
+                    </a>
+                    <a href="" class="btn btn-icon btn-success btn-sm btn-icon-md btn-circle mx-1"
+                       title="Sửa">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <span class="btn btn-icon btn-danger delete-btn btn-sm btn-icon-md btn-circle mx-1"
+                          data-toggle="tooltip" data-placement="top" data-id="<%= dataUser[i].id %>" title="Xóa">
+                          <i class="fa fa-trash"></i>
+                    </span>
+                </td>
+                </td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
     </div>
-
-    <h1>Hello</h1>
-    <%= dataUser %>
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">FirstName</th>
-            <th scope="col">LastName</th>
-            <th scope="col">Email</th>
-            <th scope="col">Address</th>
-            <th>&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% for (let i = 0; i < dataUser.length; i++) { %>
-        <tr>
-            <th scope="row"><%= dataUser[i].id %></th>
-            <td><%= dataUser[i].firstName %></td>
-            <td><%= dataUser[i].lastName %></td>
-            <td><%= dataUser[i].email %></td>
-            <td><%= dataUser[i].address %></td>
-            <td>
-            <td class="align-center justify-content-center">
-                <a href="" class="btn btn-icon btn-info btn-sm btn-icon-md btn-circle mx-1"
-                   title="Chi tiết">
-                    <i class="fa fa-asterisk"></i>
-                </a>
-                <a href="" class="btn btn-icon btn-success btn-sm btn-icon-md btn-circle mx-1"
-                   title="Sửa">
-                    <i class="fa fa-edit"></i>
-                </a>
-                <span class="btn btn-icon btn-danger delete-btn btn-sm btn-icon-md btn-circle mx-1"
-                      data-toggle="tooltip" data-placement="top" data-id="<%= dataUser[i].id %>" title="Xóa">
-                      <i class="fa fa-trash"></i>
-                </span>
-            </td>
-            </td>
-        </tr>
-        <% } %>
-        </tbody>
-    </table>
 
 <!--    <script src="js/custom/apps/ecommerce/settings/settings.js"></script>-->
 <!--    <script src="js/widgets.bundle.js"></script>-->
