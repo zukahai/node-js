@@ -1,7 +1,5 @@
 import express from "express";
-import toastr from "express-toastr";
-import cookieParser from 'cookieparser';
-import session from 'express-session';
+import swal from 'sweetalert2';
 
 
 
