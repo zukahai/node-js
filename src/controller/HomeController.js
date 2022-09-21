@@ -8,9 +8,10 @@ let getHomePage = async (req, res) => {
     return res.render('index.ejs', { req: req, dataUser: rows, message: message })
 }
 
-let Delete = (req, res) => {
-    res.write('delete');
-    res.end();
+let Delete = async (req, res) => {
+    let id = req.params.id;
+    await pool.execute('DELETE FROM users WHERE id = ?', [id]);
+    return res.redirect('/');
 }
 
 let detail = async (req, res) => {
@@ -28,13 +29,12 @@ let create = async (req, res) => {
     let { firstName, lastName, email, address } = req.body;
     await pool.execute('INSERT INTO users(firstName, lastName, email, address) VALUES(?, ?, ?, ?)',
         [firstName, lastName, email, address]);
-        req.session.secret = {
-            message: {
-                type: 'success',
-                text: 'Thêm thành công người dùng ' + lastName + ' ' + firstName
-            }
+    req.session.secret = {
+        message: {
+            type: 'success',
+            text: 'Thêm thành công người dùng ' + lastName + ' ' + firstName
         }
-        console.log(req.session.secret)
+    }
     return res.redirect('/');
 }
 

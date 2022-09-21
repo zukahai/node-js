@@ -72,7 +72,7 @@
         $(document).on("click", ".delete-btn", function () {
             var row = $(this).closest("tr");
             var id = $(this).attr("data-id");
-            let urlDelete = (window.location.href + "/delete/").replaceAll('//delete', '/delete') + "";
+            let urlDelete = (window.location.href + "/delete").replaceAll('//delete', '/delete') + "/" +id;
             console.log(id);
             swal.fire({
                 title: "Bạn có chắc chắn muốn xóa?",

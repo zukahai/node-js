@@ -8,7 +8,7 @@ const homeRouter = (app) => {
     router.get('/admin', (req, res) => {
         res.render('admin/index.ejs')
     })
-    router.get('/delete', HomeController.Delete)
+    router.get('/delete/:id', HomeController.Delete)
     router.get('/detail/:id', HomeController.detail)
     router.get('/create', HomeController.showCreatePage)
     router.post('/create', HomeController.create)
