@@ -14,16 +14,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
     <script type="text/javascript" src="js/sweetalert2.all.js"></script>
 </head>
-<body>
+<body onload="<%= (message) ? 'sendToastr(\''+message.text +'\')' : ''%>">
 <%- include('includes/menu'); -%>
 
     <div class="container">
 
         <h1>Danh sách người dùng</h1>
-        <% if(message){ %>
-            <%=message.text%>
-        <% } %>
-
         <a href="/create" class="btn btn-primary">Thêm người dùng</a>
         <table class="table">
             <thead>
@@ -67,9 +63,9 @@
     </div>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            toastr.success("Xin chào");
-        })
+        function sendToastr(text){
+            toastr.success(text);
+        }
     </script>
     <script>
         //handle on click delete-btn

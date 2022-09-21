@@ -31,7 +31,7 @@ let create = async (req, res) => {
         req.session.secret = {
             message: {
                 type: 'success',
-                text: 'Thêm thành công'
+                text: 'Thêm thành công người dùng ' + lastName + ' ' + firstName
             }
         }
         console.log(req.session.secret)
