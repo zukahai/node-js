@@ -10,10 +10,10 @@ let Delete = (req, res) => {
     res.end();
 }
 
-let detail = (req, res) => {
+let detail = async (req, res) => {
     let id = req.params.id;
-    res.write('Detail' + id);
-    res.end();
+    const [rows, fields] = await pool.execute('SELECT * FROM users WHERE id = ?', [id]);
+    res.send(rows);
 }
 
 module.exports = {
