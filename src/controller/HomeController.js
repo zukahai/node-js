@@ -16,8 +16,22 @@ let detail = async (req, res) => {
     res.send(rows);
 }
 
+let showCreatePage = async (req, res) => {
+    return res.render('create.ejs')
+}
+
+let create = async (req, res) => {
+    console.log(req.body);
+    let { firstName, lastName, email, address } = req.body;
+    await pool.execute('INSERT INTO users(firstName, lastName, email, address) VALUES(?, ?, ?, ?)',
+        [firstName, lastName, email, address]);
+    return res.redirect('/');
+}
+
 module.exports = {
     getHomePage,
     Delete,
-    detail
+    detail,
+    showCreatePage,
+    create
 }
