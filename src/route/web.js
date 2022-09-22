@@ -47,6 +47,9 @@ const homeRouter = (app) => {
         home.get('/', (req, res) => {
             res.render('index.ejs');
         });
+        home.get('/test', (req, res) => {
+            res.render('test/index.ejs');
+        });
     });
 
     root.group('/admin', admin => {
