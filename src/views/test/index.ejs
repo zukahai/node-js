@@ -35,23 +35,52 @@
     </div>
     <div id="layoutSidenav_content">
         <main>
-            <div class="container-fluid px-4 mt-3">
+            <div class="container-fluid px-4 mt-3 bg-light">
 <!--                content-->
-                Hello
+                <h1>Danh sách người dùng</h1>
+                <a href="/admin/user/create" class="btn btn-primary">Thêm người dùng</a>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">FirstName</th>
+                        <th scope="col">LastName</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Address</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% for (let i = 0; i < dataUser.length; i++) { %>
+                        <tr>
+                            <th scope="row"><%= dataUser[i].id %></th>
+                            <td><%= dataUser[i].firstName %></td>
+                            <td><%= dataUser[i].lastName %></td>
+                            <td><%= dataUser[i].email %></td>
+                            <td><%= dataUser[i].address %></td>
+                            <td>
+                            <td class="align-center justify-content-center">
+                                <a href="/admin/user/detail/<%= dataUser[i].id %>" class="btn btn-icon btn-info btn-sm btn-icon-md btn-circle mx-1"
+                                   title="Xem">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="/admin/user/edit/<%= dataUser[i].id %>" class="btn btn-icon btn-success btn-sm btn-icon-md btn-circle mx-1"
+                                   title="Sửa">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <span class="btn btn-icon btn-danger delete-btn btn-sm btn-icon-md btn-circle mx-1"
+                                      data-toggle="tooltip" data-placement="top" data-id="<%= dataUser[i].id %>" title="Xóa">
+                          <i class="fa fa-trash"></i>
+                    </span>
+                            </td>
+                            </td>
+                        </tr>
+                    <% } %>
+                    </tbody>
+                </table>
             </div>
         </main>
-        <footer class="py-4 bg-light mt-auto">
-            <div class="container-fluid px-4">
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                    <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <%- include('../includes/footer'); -%>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

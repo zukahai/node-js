@@ -1,5 +1,6 @@
 import express from "express";
-import HomeController from '../Controller/HomeController';
+import UserController from '../controller/UserController';
+import HomeController from '../controller/HomeController';
 import multer from 'multer';
 import path from 'path';
 let appRoot = require('app-root-path');
@@ -43,33 +44,29 @@ const barMiddleware = (req, res, next) => {
 const homeRouter = (app) => {
 
     root.group('/', home => {
-        // -> /blogs
-        home.get('/', (req, res) => {
-            res.render('test/index.ejs');
-        });
+        home.get('/', HomeController.getHomePage)
         home.get('/test', (req, res) => {
             res.render('test/index.ejs');
         });
     });
 
     root.group('/admin', admin => {
-        // -> /blogs
         admin.get('/', (req, res) => {
             res.send("Home admin")
         });
         admin.group('/user', user => {
-            user.get('/', HomeController.getHomePage)
+            user.get('/', UserController.getHomePage)
             user.get('/admin', (req, res) => {
                 res.render('admin/index.ejs')
             })
-            user.get('/delete/:id', HomeController.Delete)
-            user.get('/detail/:id', HomeController.detail)
-            user.get('/edit/:id', HomeController.showEditPage)
-            user.post('/edit/:id', HomeController.edit)
-            user.get('/create', HomeController.showCreatePage)
-            user.post('/create', HomeController.create)
-            user.get('/upload', HomeController.showUploadPage)
-            user.post('/upload', upload.single('fileTest'), HomeController.upload)
+            user.get('/delete/:id', UserController.Delete)
+            user.get('/detail/:id', UserController.detail)
+            user.get('/edit/:id', UserController.showEditPage)
+            user.post('/edit/:id', UserController.edit)
+            user.get('/create', UserController.showCreatePage)
+            user.post('/create', UserController.create)
+            user.get('/upload', UserController.showUploadPage)
+            user.post('/upload', upload.single('fileTest'), UserController.upload)
         });
     });
 
