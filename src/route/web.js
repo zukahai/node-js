@@ -45,7 +45,7 @@ const homeRouter = (app) => {
     root.group('/', home => {
         // -> /blogs
         home.get('/', (req, res) => {
-            res.render('index.ejs');
+            res.render('test/index.ejs');
         });
         home.get('/test', (req, res) => {
             res.render('test/index.ejs');
