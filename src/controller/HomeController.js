@@ -25,7 +25,7 @@ let showCreatePage = async (req, res) => {
 }
 
 let create = async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     let { firstName, lastName, email, address } = req.body;
     await pool.execute('INSERT INTO users(firstName, lastName, email, address) VALUES(?, ?, ?, ?)',
         [firstName, lastName, email, address]);
@@ -38,10 +38,32 @@ let create = async (req, res) => {
     return res.redirect('/');
 }
 
+let showEditPage = async (req, res) => {
+    let id = req.params.id;
+    const [rows, fields] = await pool.execute('SELECT * FROM users WHERE id = ?', [id]);
+    return res.render('edit.ejs', {user: rows[0]})
+}
+
+let edit = async (req, res) => {
+    let id = req.params.id;
+    let { firstName, lastName, email, address } = req.body;
+    await pool.execute('UPDATE `users` SET firstName=?,lastName=?,email=?,address=? WHERE id=?',
+        [firstName, lastName, email, address, id]);
+    req.session.secret = {
+        message: {
+            type: 'success',
+            text: 'Cập nhật thành công người dùng ' + lastName + ' ' + firstName
+        }
+    }
+    return res.redirect('/');
+}
+
 module.exports = {
     getHomePage,
     Delete,
     detail,
     showCreatePage,
-    create
+    create,
+    showEditPage,
+    edit
 }

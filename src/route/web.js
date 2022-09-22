@@ -10,6 +10,8 @@ const homeRouter = (app) => {
     })
     router.get('/delete/:id', HomeController.Delete)
     router.get('/detail/:id', HomeController.detail)
+    router.get('/edit/:id', HomeController.showEditPage)
+    router.post('/edit/:id', HomeController.edit)
     router.get('/create', HomeController.showCreatePage)
     router.post('/create', HomeController.create)
     return app.use('/', router)
