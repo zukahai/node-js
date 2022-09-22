@@ -4,6 +4,10 @@ import multer from 'multer';
 import path from 'path';
 let appRoot = require('app-root-path');
 let router = express.Router();
+import { Router } from 'express';
+import RouteGroup from 'express-route-grouping';
+
+const root = new RouteGroup('/', Router());
 
 const fooMiddleware = (req, res, next) => {
     console.log('foo');
@@ -38,19 +42,38 @@ const barMiddleware = (req, res, next) => {
 
 const homeRouter = (app) => {
 
-    router.get('/', HomeController.getHomePage)
-    router.get('/admin', (req, res) => {
-        res.render('admin/index.ejs')
-    })
-    router.get('/delete/:id', HomeController.Delete)
-    router.get('/detail/:id', HomeController.detail)
-    router.get('/edit/:id', HomeController.showEditPage)
-    router.post('/edit/:id', HomeController.edit)
-    router.get('/create', HomeController.showCreatePage)
-    router.post('/create', HomeController.create)
-    router.get('/upload', HomeController.showUploadPage)
-    router.post('/upload', upload.single('fileTest'), HomeController.upload)
-    return app.use('/', router)
+    root.group('/', home => {
+        // -> /blogs
+        home.get('/', (req, res) => {
+            res.render('index.ejs');
+        });
+    });
+
+    root.group('/admin', admin => {
+        // -> /blogs
+        admin.get('/', (req, res) => {
+            res.send("Home admin")
+        });
+        admin.group('/user', user => {
+            user.get('/', HomeController.getHomePage)
+            user.get('/admin', (req, res) => {
+                res.render('admin/index.ejs')
+            })
+            user.get('/delete/:id', HomeController.Delete)
+            user.get('/detail/:id', HomeController.detail)
+            user.get('/edit/:id', HomeController.showEditPage)
+            user.post('/edit/:id', HomeController.edit)
+            user.get('/create', HomeController.showCreatePage)
+            user.post('/create', HomeController.create)
+            user.get('/upload', HomeController.showUploadPage)
+            user.post('/upload', upload.single('fileTest'), HomeController.upload)
+        });
+    });
+
+
+
+
+    return app.use('/', root.export());
 }
 
 export default homeRouter;

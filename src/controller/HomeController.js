@@ -6,7 +6,7 @@ let getHomePage = async (req, res) => {
     delete req.session.secret;
     console.log(req.session);
     const [rows, fields] = await pool.execute('SELECT * FROM users');
-    return res.render('index.ejs', { req: req, dataUser: rows, message: message })
+    return res.render('admin/user/index.ejs', { req: req, dataUser: rows, message: message })
 }
 
 let Delete = async (req, res) => {
@@ -22,7 +22,7 @@ let detail = async (req, res) => {
 }
 
 let showCreatePage = async (req, res) => {
-    return res.render('create.ejs')
+    return res.render('admin.user/create.ejs')
 }
 
 let create = async (req, res) => {
@@ -36,13 +36,13 @@ let create = async (req, res) => {
             text: 'Thêm thành công người dùng ' + lastName + ' ' + firstName
         }
     }
-    return res.redirect('/');
+    return res.redirect('/admin/user');
 }
 
 let showEditPage = async (req, res) => {
     let id = req.params.id;
     const [rows, fields] = await pool.execute('SELECT * FROM users WHERE id = ?', [id]);
-    return res.render('edit.ejs', {user: rows[0]})
+    return res.render('admin/user/edit.ejs', {user: rows[0]})
 }
 
 let edit = async (req, res) => {
@@ -56,11 +56,11 @@ let edit = async (req, res) => {
             text: 'Cập nhật thành công người dùng ' + lastName + ' ' + firstName
         }
     }
-    return res.redirect('/');
+    return res.redirect('/admin/user');
 }
 
 let showUploadPage = async (req, res) => {
-    return res.render('upload.ejs')
+    return res.render('admin/user/upload.ejs')
 }
 
 let upload = async (req, res) => {
@@ -68,7 +68,7 @@ let upload = async (req, res) => {
         return res.send(req.fileValidationError);
     if (!req.file)
         return res.send('Please select an image to upload');
-    res.send(`You have uploaded this image: <hr/><img src="/images/${req.file.filename}" width="500"><hr /><a href="/upload">Upload another image</a>`);
+    res.send(`You have uploaded this image: <hr/><img src="/images/${req.file.filename}" width="500"><hr /><a href="/admin/user/upload">Upload another image</a>`);
 }
 
 module.exports = {

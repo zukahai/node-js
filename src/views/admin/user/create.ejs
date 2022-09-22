@@ -5,42 +5,47 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit User <%= user.firstName %></title>
+    <title>Create</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
-    <script type="text/javascript" src="js/sweetalert2.all.js"></script>
+    <script type="text/javascript" src="/js/sweetalert2.all.js"></script>
 </head>
 <body>
-<%- include('includes/menu'); -%>
+<%- include('../../includes/menu'); -%>
 
     <div class="container row f-flex justify-content-center">
         <form action="" method="post" class="col col-lg-8">
             <div class="form-group my-2">
                 <label for="lastName">Họ</label>
-                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Họ" value="<%= user.lastName %>">
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Họ">
             </div>
             <div class="form-group my-2">
                 <label for="firstName">Tên</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Tên" value="<%= user.firstName %>">
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Tên">
             </div>
             <div class="form-group my-2">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="email" value="<%= user.email %>">
+                <input type="email" class="form-control" id="email" name="email" placeholder="email">
             </div>
             <div class="form-group my-2">
                 <label for="address">Địa chỉ</label>
-                <input type="text" class="form-control" id="address" name="address" placeholder="address" value="<%= user.address %>">
+                <input type="text" class="form-control" id="address" name="address" placeholder="address">
             </div>
             <div class="justify-content-center d-flex my-5">
-                <button type="submit" class="btn btn-primary">Sửa</button>
+                <button type="submit" class="btn btn-primary">Thêm tài khoản</button>
             </div>
         </form>
     </div>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            toastr.success("Xin chào");
+        })
+    </script>
     <script>
         //handle on click delete-btn
         $(document).on("click", ".delete-btn", function () {
