@@ -11,7 +11,6 @@ const storage = multer.diskStorage({
         cb(null, appRoot + "/public/images/");
     },
 
-    // By default, multer removes file extensions so let's add them back
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
@@ -27,8 +26,6 @@ const imageFilter = function (req, file, cb) {
 };
 
 let upload = multer({ storage: storage, fileFilter: imageFilter });
-
-let uploadMultipleFiles = multer({ storage: storage, fileFilter: imageFilter }).array('multiple_images', 3);
 
 const homeRouter = (app) => {
     router.get('/', HomeController.getHomePage)
