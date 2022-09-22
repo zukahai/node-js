@@ -2,9 +2,13 @@ import express from "express";
 import HomeController from '../Controller/HomeController';
 import multer from 'multer';
 import path from 'path';
-var appRoot = require('app-root-path');
+let appRoot = require('app-root-path');
 let router = express.Router();
 
+const fooMiddleware = (req, res, next) => {
+    console.log('foo');
+    next();
+}
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -27,7 +31,13 @@ const imageFilter = function (req, file, cb) {
 
 let upload = multer({ storage: storage, fileFilter: imageFilter });
 
+const barMiddleware = (req, res, next) => {
+    console.log('bar');
+    next();
+}
+
 const homeRouter = (app) => {
+
     router.get('/', HomeController.getHomePage)
     router.get('/admin', (req, res) => {
         res.render('admin/index.ejs')
