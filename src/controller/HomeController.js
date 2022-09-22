@@ -1,4 +1,5 @@
 import pool from "../configs/connectDB";
+import multer from 'multer';
 
 let getHomePage = async (req, res) => {
     let message =  req.session.secret ? req.session.secret.message : null;
@@ -58,12 +59,19 @@ let edit = async (req, res) => {
     return res.redirect('/');
 }
 
+let showUploadPage = async (req, res) => {
+    return res.render('upload.ejs')
+}
+
+let upload = async (req, res) => {
+    return res.send("Hello");
+}
+
 module.exports = {
     getHomePage,
     Delete,
     detail,
-    showCreatePage,
-    create,
-    showEditPage,
-    edit
+    showCreatePage, create,
+    showEditPage, edit,
+    showUploadPage, upload
 }

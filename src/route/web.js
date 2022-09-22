@@ -14,6 +14,8 @@ const homeRouter = (app) => {
     router.post('/edit/:id', HomeController.edit)
     router.get('/create', HomeController.showCreatePage)
     router.post('/create', HomeController.create)
+    router.get('/upload', HomeController.showUploadPage)
+    router.post('/upload', HomeController.upload)
     return app.use('/', router)
 }
 
