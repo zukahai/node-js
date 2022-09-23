@@ -4,7 +4,7 @@ let getHomePage = async (req, res) => {
     let message =  req.session.secret ? req.session.secret.message : null;
     delete req.session.secret;
     const [rows, fields] = await pool.execute('SELECT * FROM users');
-    return res.render('test/index.ejs', { req: req, dataUser: rows, message: message })
+    return res.render('admin/user/index.ejs', { req: req, dataUser: rows, message: message })
 }
 
 let Delete = async (req, res) => {

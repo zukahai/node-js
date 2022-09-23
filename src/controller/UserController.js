@@ -11,7 +11,7 @@ let getHomePage = async (req, res) => {
 let Delete = async (req, res) => {
     let id = req.params.id;
     await pool.execute('DELETE FROM users WHERE id = ?', [id]);
-    return res.redirect('/');
+    return res.redirect('/admin/user');
 }
 
 let detail = async (req, res) => {

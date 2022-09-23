@@ -1,12 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit User <%= user.firstName %></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Edit User</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
@@ -14,69 +17,67 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
     <script type="text/javascript" src="/js/sweetalert2.all.js"></script>
 </head>
-<body>
-<%- include('../../includes/menu'); -%>
-
-    <div class="container row f-flex justify-content-center">
-        <form action="" method="post" class="col col-lg-8">
-            <div class="form-group my-2">
-                <label for="lastName">Họ</label>
-                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Họ" value="<%= user.lastName %>">
-            </div>
-            <div class="form-group my-2">
-                <label for="firstName">Tên</label>
-                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Tên" value="<%= user.firstName %>">
-            </div>
-            <div class="form-group my-2">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="email" value="<%= user.email %>">
-            </div>
-            <div class="form-group my-2">
-                <label for="address">Địa chỉ</label>
-                <input type="text" class="form-control" id="address" name="address" placeholder="address" value="<%= user.address %>">
-            </div>
-            <div class="justify-content-center d-flex my-5">
-                <button type="submit" class="btn btn-primary">Sửa</button>
-            </div>
-        </form>
+<body class="sb-nav-fixed" onload="<%= (typeof message !== 'undefined' && message) ? 'sendToastr(\''+message.text +'\')' : ''%>">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="/">HaiZuka</a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+    <!-- Navbar Search-->
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <div class="input-group">
+            <input class="form-control" type="text" placeholder="Tìm kiếm..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+            <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+        </div>
+    </form>
+    <!-- Navbar-->
+    <%- include('../../includes/user'); -%>
+</nav>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <%- include('../../includes/sidebar'); -%>
+        </nav>
     </div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4 mt-3 bg-light">
+                <!--                content-->
+                <h1>Sửa người dùng</h1>
+                <form action="" method="post" class="col col-lg-8">
+                    <div class="form-group my-2">
+                        <label for="lastName">Họ</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Họ" value="<%= user.lastName %>">
+                    </div>
+                    <div class="form-group my-2">
+                        <label for="firstName">Tên</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Tên" value="<%= user.firstName %>">
+                    </div>
+                    <div class="form-group my-2">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="email" value="<%= user.email %>">
+                    </div>
+                    <div class="form-group my-2">
+                        <label for="address">Địa chỉ</label>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="address" value="<%= user.address %>">
+                    </div>
+                    <div class="justify-content-center d-flex my-5">
+                        <button type="submit" class="btn btn-primary">Sửa</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <%- include('../../includes/footer'); -%>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="/js/scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="/assets/demo/chart-area-demo.js"></script>
+<script src="/assets/demo/chart-bar-demo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="/js/datatables-simple-demo.js"></script>
+<%- include('../../includes/script'); -%>
 
-    <script>
-        //handle on click delete-btn
-        $(document).on("click", ".delete-btn", function () {
-            var row = $(this).closest("tr");
-            var id = $(this).attr("data-id");
-            let urlDelete = (window.location.href + "/delete/").replaceAll('//delete', '/delete') + "";
-            console.log(id);
-            swal.fire({
-                title: "Bạn có chắc chắn muốn xóa?",
-                text: "Sau khi xóa, bạn sẽ không thể phục hồi dữ liệu này!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Đồng ý",
-                cancelButtonText: "Hủy bỏ"
-            }).then(function (result) {
-                if (result.value) {
-                    $.ajax({
-                        url: urlDelete,
-                        type: "GET",
-                        success: function (result) {
-                            if (result !== null) {
-                                toastr.success("Xóa thành công");
-                                row.remove();
-                            } else {
-                                toastr.error("Xóa thất bại");
-                            }
-                        },
-                        error: function (e) {
-                            toastr.error("Xóa thất bại");
-                        }
-                    })
-                }
-            });
-        });
-    </script>
 </body>
 </html>
