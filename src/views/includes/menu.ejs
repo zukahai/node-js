@@ -1,5 +1,45 @@
-<div class="topnav">
-    <a class="active" href="/">Home</a>
-    <a href="/admin/user/">User</a>
-    <a href="/admin/user/upload">Upload</a>
-</div>
+<% menu = [
+    {
+        //sub1
+        'title': 'Admin',
+        'name': 'admin',
+        'link': '',
+        'children': [
+            {
+                'title': 'User',
+                'name': 'admin_user',
+                'link': '/admin/user',
+                'children': [
+                    {
+                        'title': 'List User',
+                        'name': 'admin_user_index',
+                        'link': '/admin/user',
+                    },
+                    {
+                        'title': 'Create User',
+                        'name': 'admin_user_create',
+                        'link': '/admin/user/create',
+                    },
+                    {
+                        'title': 'Edit User',
+                        'name': 'admin_user_edit',
+                        'link': '',
+                    }
+                ]
+            },
+            {
+                'title': 'Error',
+                'name': 'admin_error',
+                'link': '/admin/user/create',
+                'children': [
+                    {
+                        'title': 'Error (sub3)',
+                        'name': 'admin_error_index',
+                        'link': 'admin/user',
+                    }
+                ]
+            }
+        ]
+    }
+]
+%>

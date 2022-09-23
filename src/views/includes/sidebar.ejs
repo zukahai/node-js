@@ -1,43 +1,44 @@
+<%
+ sub1 = link.split('_')[0];
+ sub2 = link.split('_')[0] + "_" + link.split('_')[1];
+ sub3 = link;
+%>
+
+
 <div class="sb-sidenav-menu">
     <div class="nav">
         <div class="sb-sidenav-menu-heading">Core</div>
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="">
             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
             Dashboard
         </a>
         <div class="sb-sidenav-menu-heading">Pages</div>
 
-        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#adminPages" aria-expanded="false" aria-controls="adminPages">
+        <% for (let i = 0; i < menu.length; i++) { %>
+        <a class="nav-link collapsed" href="<%= menu[i].link %>" data-bs-toggle="collapse" data-bs-target="#<%= menu[i].name %>" aria-expanded="false" aria-controls="<%= menu[i].name %>">
             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-            Admin
+            <%= menu[i].title %>
             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
         </a>
-        <div class="collapse" id="adminPages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+        <div class="collapse <%= (menu[i].name == sub1) ? "show" : "" %>" id="<%= menu[i].name %>" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#adminUserPages" aria-expanded="false" aria-controls="adminUserPages">
-                    User
+                <% for (let j = 0; j < menu[i].children.length; j++) { %>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#<%= menu[i].children[j].name %>" aria-expanded="false" aria-controls="<%= menu[i].children[j].name %>">
+                    <%= menu[i].children[j].title %>
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="adminUserPages" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                <div class="collapse <%= (menu[i].children[j].name == sub2) ? "show" : "" %>" id="<%= menu[i].children[j].name %>" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="/admin/user">List user</a>
-                        <a class="nav-link" href="/admin/user/create">Create</a>
-                        <a class="nav-link" href="password.html">Edit</a>
+                        <% for (let k = 0; k < menu[i].children[j].children.length; k++) { %>
+                        <a class="nav-link <%= (menu[i].children[j].children[k].name == sub3) ?'active' : ''%>"
+                           href="<%= menu[i].children[j].children[k].link %>"><%= menu[i].children[j].children[k].title%></a>
+                        <% } %>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#adminErrorPages" aria-expanded="false" aria-controls="adminErrorPages">
-                    Error
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="adminErrorPages" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="401.html">401 Page</a>
-                        <a class="nav-link" href="404.html">404 Page</a>
-                        <a class="nav-link" href="500.html">500 Page</a>
-                    </nav>
-                </div>
+                <% } %>
             </nav>
         </div>
+        <% } %>
     </div>
 </div>
 <div class="sb-sidenav-footer">
