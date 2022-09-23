@@ -17,7 +17,7 @@ const fooMiddleware = (req, res, next) => {
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, appRoot + "/public/images/");
+        cb(null, appRoot + "/public/images/uploads/");
     },
 
     filename: function (req, file, cb) {

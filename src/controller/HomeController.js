@@ -66,7 +66,7 @@ let upload = async (req, res) => {
         return res.send(req.fileValidationError);
     if (!req.file)
         return res.send('Please select an image to upload');
-    res.send(`You have uploaded this image: <hr/><img src="/images/${req.file.filename}" width="500"><hr /><a href="/admin/user/upload">Upload another image</a>`);
+    res.send(`You have uploaded this image: <hr/><img src="/images/uploads/${req.file.filename}" width="500"><hr /><a href="/admin/user/upload">Upload another image</a>`);
 }
 
 module.exports = {
