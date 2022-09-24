@@ -11,3 +11,4 @@ node_modules/.bin/sequelize db:migrate
 
 https://www.youtube.com/watch?v=Wtt5uC4HWAA&ab_channel=HỏiDânIT
 https://mherman.org/blog/node-postgres-sequelize/
+------------------------------------------------------------------------------------------
