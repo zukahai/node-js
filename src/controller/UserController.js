@@ -1,23 +1,24 @@
 import pool from "../configs/connectDB";
+import {getAll, _delete, find, add, update} from "../services/UserService"
 import multer from 'multer';
 
 let getHomePage = async (req, res) => {
     let message =  req.session.secret ? req.session.secret.message : null;
     delete req.session.secret;
-    const [rows, fields] = await pool.execute('SELECT * FROM users');
-    return res.render('admin/user/index.ejs', { req: req, dataUser: rows, message: message })
+    let users = await getAll();
+    return res.render('admin/user/index.ejs', { dataUser: users, message: message })
 }
 
 let Delete = async (req, res) => {
     let id = req.params.id;
-    await pool.execute('DELETE FROM users WHERE id = ?', [id]);
+    await _delete(id);
     return res.redirect('/admin/user');
 }
 
 let detail = async (req, res) => {
     let id = req.params.id;
-    const [rows, fields] = await pool.execute('SELECT * FROM users WHERE id = ?', [id]);
-    res.send(rows);
+    let user = await find(id);
+    res.send(user);
 }
 
 let showCreatePage = async (req, res) => {
@@ -27,8 +28,7 @@ let showCreatePage = async (req, res) => {
 let create = async (req, res) => {
     // console.log(req.body);
     let { firstName, lastName, email, address } = req.body;
-    await pool.execute('INSERT INTO users(firstName, lastName, email, address) VALUES(?, ?, ?, ?)',
-        [firstName, lastName, email, address]);
+    await add([firstName, lastName, email, address]);
     req.session.secret = {
         message: {
             type: 'success',
@@ -40,15 +40,14 @@ let create = async (req, res) => {
 
 let showEditPage = async (req, res) => {
     let id = req.params.id;
-    const [rows, fields] = await pool.execute('SELECT * FROM users WHERE id = ?', [id]);
-    return res.render('admin/user/edit.ejs', {user: rows[0]})
+    let user = await find(id);
+    return res.render('admin/user/edit.ejs', {user: user})
 }
 
 let edit = async (req, res) => {
     let id = req.params.id;
     let { firstName, lastName, email, address } = req.body;
-    await pool.execute('UPDATE `users` SET firstName=?,lastName=?,email=?,address=? WHERE id=?',
-        [firstName, lastName, email, address, id]);
+    await update([firstName, lastName, email, address, id]);
     req.session.secret = {
         message: {
             type: 'success',
