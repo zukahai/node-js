@@ -1,43 +1,69 @@
 <% menu = [
-    {
-        //sub1
+    { //sub1
         'title': 'Admin',
         'name': 'admin',
         'link': '',
         'children': [
-            {
-                //sub2
+            { //sub2
                 'title': 'User',
                 'name': 'admin_user',
                 'link': '/admin/user',
                 'children': [
-                    //sub3
-                    {
+                    { //sub3
                         'title': 'List User',
                         'name': 'admin_user_index',
                         'link': '/admin/user',
                     },
-                    {
+                    { //sub3
                         'title': 'Create User',
                         'name': 'admin_user_create',
                         'link': '/admin/user/create',
                     },
-                    {
+                    { //sub3
                         'title': 'Edit User',
                         'name': 'admin_user_edit',
                         'link': '',
                     }
                 ]
             },
-            {
+            { //sub2
                 'title': 'Error',
                 'name': 'admin_error',
                 'link': '/admin/user/create',
                 'children': [
-                    {
+                    { //sub3
                         'title': 'Error (sub3)',
                         'name': 'admin_error_index',
                         'link': 'admin/user',
+                    }
+                ]
+            }
+        ]
+    },
+    { //sub1
+        'title': 'Staff',
+        'name': 'staff',
+        'link': '',
+        'children': [
+            { //sub2
+                'title': 'Product',
+                'name': 'staff_product',
+                'link': '/admin/user',
+                'children': [
+                    { //sub3
+                        'title': 'List Product',
+                        'name': 'staff_product_index',
+                        'link': '/admin/user',
+                    },
+                    { //sub3
+                        'title': 'Create Product',
+                        'name': 'staff_product_create',
+                        'link': '/admin/user/create',
+                    },
+                    { //sub3
+                        'title': 'Edit Product',
+                        'name': 'staff_product_edit',
+                        'link': '',
                     }
                 ]
             }
