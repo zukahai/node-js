@@ -4,3 +4,10 @@ Cài lại thư viện:
 npm install
 
 npm install --save-exact body-parser@1.19.0 nodemon@2.0.12 @babel/core@7.15.5 @babel/node@7.15.4 @babel/preset-env@7.15.6
+------------------------------------------------------------------------------------------
+Migrate CLI
+npx sequelize-cli model:generate --name Account --attributes username:string,password:string,role_id:integer
+node_modules/.bin/sequelize db:migrate
+
+https://www.youtube.com/watch?v=Wtt5uC4HWAA&ab_channel=HỏiDânIT
+https://mherman.org/blog/node-postgres-sequelize/

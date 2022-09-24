@@ -11,7 +11,7 @@ app.use(express.json());
 configViewEngine(app);
 homeRouter(app);
 
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
     console.log(`Start: http://localhost:${port}`)
 })

@@ -33,9 +33,14 @@
     "express-route-grouping": "^1.1.1",
     "express-session": "^1.17.3",
     "express-toastr": "^2.0.2",
+    "migrate": "^1.8.0",
     "multer": "1.4.3",
     "mysql2": "2.3.1",
     "nodemon": "2.0.12",
+    "sequelize": "^6.6.2",
     "sweetalert2": "^11.4.33"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.2.0"
   }
 }
