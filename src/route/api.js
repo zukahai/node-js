@@ -7,9 +7,11 @@ const root = new RouteGroup('/', Router());
 
 const APIRouter = (app) => {
 
-    root.group('/api', home => {
-        home.get('/', APIController.allUser);
+    root.group('/api', api => {
+        api.get('/', APIController.allUser);
+        api.get('/:id', APIController.findUserAPI);
     });
+
     return app.use('/', root.export());
 }
 

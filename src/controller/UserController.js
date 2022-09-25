@@ -7,7 +7,7 @@ let getHomePage = async (req, res) => {
     let message =  req.session.secret ? req.session.secret.message : null;
     delete req.session.secret;
     let users = (req.query.keyword == null) ? await getAll() : await search(req.query.keyword)
-    return res.render('admin/user/index.ejs', { dataUser: users, message: message })
+    return res.render('admin/user/index.ejs', { dataUser: users, message: message, keyword: req.query.keyword })
 }
 
 let Delete = async (req, res) => {

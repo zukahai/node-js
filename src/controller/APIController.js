@@ -1,7 +1,4 @@
-import pool from "../configs/connectDB";
-import {getAll, _delete, find, add as abc, update} from "../services/UserService"
-import multer from 'multer';
-import {getAll as getAllUser} from "../services/UserService";
+import {getAll as getAllUser, find as findUser} from "../services/UserService";
 
 let allUser = async (req, res) => {
     let users = await getAllUser();
@@ -11,7 +8,17 @@ let allUser = async (req, res) => {
     })
 }
 
+let findUserAPI = async (req, res) => {
+    let id = req.params.id;
+    let user = await findUser(id);
+    return res.status(200).json({
+        message: 'ok',
+        data: user
+    })
+}
+
 
 module.exports = {
-    allUser
+    allUser,
+    findUserAPI
 }
