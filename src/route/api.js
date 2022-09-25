@@ -11,6 +11,9 @@ const APIRouter = (app) => {
         api.group('/user', user => {
             user.get('/', APIController.allUser);
             user.get('/:id', APIController.findUserAPI);
+            user.post('/create', APIController.createUserAPI);
+            user.post('/edit/:id', APIController.editUserAPI)
+            user.get('/delete/:id', APIController.deleteAPI);
         });
     });
 

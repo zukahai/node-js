@@ -39,6 +39,32 @@
 				"url": "http://localhost:2712/admin/user/create"
 			},
 			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Đức Nam\",\r\n    \"lastName\": \"Phan\",\r\n    \"email\": \"duchai2712@gmail.com\",\r\n    \"address\": \"Hà Tĩnh\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:2712/api/user/edit/5"
+			},
+			"response": []
 		}
 	]
 }
