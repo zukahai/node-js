@@ -21,6 +21,7 @@
                 <th scope="col">LastName</th>
                 <th scope="col">Email</th>
                 <th scope="col">Address</th>
+                <th scope="col">&nbsp</th>
             </tr>
             </thead>
             <tbody>
@@ -37,49 +38,25 @@
 
 <script>
     $(document).ready(function() {
-            const city = $('#location').val();
-            $('#location').val("");
-
-            let request = new XMLHttpRequest();
-            const url = `http://localhost:2712/api`;
-
-            request.onreadystatechange = function() {
-                if (this.readyState === 4 && this.status === 200) {
-                    const response = JSON.parse(this.responseText);
-                    getElements(response);
-                }
-            };
-
-            request.open("GET", url, true);
-            request.send();
-
-            function getElements(response) {
-                let data = response;
-                let html = "";
-                for (let x in data[0]) {
-                    html = html + "" + data[0][x] + "";
-                }
-                console.log(html);
-                html = html + "@";
-                console.log(html);
-                // document.getElementById("data").innerHTML = html;
-                console.log(data);
-                $('#data').DataTable({
-                    ajax: {
-                        url: 'http://localhost:2712/api',
-                        type: "GET",
-                        dataType: "json",
-                    },
-
-                    columns: [
-                        {'data': 'id'},
-                        {'data': 'firstName'},
-                        {'data': 'lastName'},
-                        {'data': 'email'},
-                        {'data': 'address'}
-                    ]
-                });
-            }
+        $('#data').DataTable({
+            ajax: {
+                url: 'http://localhost:2712/api/user',
+                type: 'GET'
+            },
+            columns: [
+                {'data': 'id'},
+                {'data': 'firstName'},
+                {'data': 'lastName'},
+                {'data': 'email'},
+                {'data': 'address'},
+                {
+                    data: null,
+                    className: "dt-center editor-edit",
+                    defaultContent: '<a href="" class="btn btn-sm btn-danger">Delete</a>',
+                    orderable: false
+                },
+            ]
+        });
     });
 </script>
 </body>
