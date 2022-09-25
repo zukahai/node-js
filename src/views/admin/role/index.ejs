@@ -1,4 +1,4 @@
-<% link = 'admin_user_index'; %>
+<% link = 'admin_role_index'; %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>User</title>
+    <title>Role - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -45,43 +45,45 @@
         <main>
             <div class="container-fluid px-4 mt-3 bg-light">
 <!--                content-->
-                <h1>Danh sách người dùng</h1>
-                <a href="/admin/user/create" class="btn btn-primary">Thêm người dùng</a>
+                <h1>Danh sách quyền</h1>
+                <a href="/admin/role/create" class="btn btn-primary">Thêm quyền</a>
                 <div style="overflow-x:auto;">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">FirstName</th>
-                            <th scope="col">LastName</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Address</th>
+                            <th class="text-center" scope="col">#</th>
+                            <th class="text-center" scope="col">Role Name</th>
+                            <th class="text-center" scope="col">Decription</th>
+                            <th class="text-center" scope="col">Quantity</th>
                             <th>&nbsp;</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <% for (let i = 0; i < dataUser.length; i++) { %>
-                            <tr>
-                                <th scope="row"><%= dataUser[i].id %></th>
-                                <td><%= dataUser[i].firstName %></td>
-                                <td><%= dataUser[i].lastName %></td>
-                                <td><%= dataUser[i].email %></td>
-                                <td><%= dataUser[i].address %></td>
-                                <td>
+                        <% for (let i = 0; i < roles.length; i++) { %>
+                            <tr class="align-middle">
+                                <th class="align-middle text-center" scope="row"><%= roles[i].id%></th>
+                                <td class="align-middle text-center">
+                                    <span class=" my-1 text-center rounded-pill
+                                    badge bg-<%= roles[i].color %>"> <%= roles[i].role_name%></span>
+                                </td>
+                                <td class="align-middle text-center"><%= roles[i].description%></td>
+                                <td class="align-middle text-center">1</td>
                                 <td class="align-center justify-content-center">
-                                    <a href="/admin/user/detail/<%= dataUser[i].id %>" class="btn btn-sm btn-warning mx-1"
-                                       title="Xem">
-                                        <i class="fa fa-eye"></i>
+
+                                    <a href="" class="btn btn-icon btn-info btn-sm btn-icon-md btn-circle mx-1"
+                                       title="Chi tiết">
+                                        <i class="fa fa-asterisk"></i>
                                     </a>
-                                    <a href="/admin/user/edit/<%= dataUser[i].id %>" class="btn btn-icon btn-success btn-sm btn-icon-md btn-circle mx-1"
+
+                                    <a href="" class="btn btn-icon btn-success btn-sm btn-icon-md btn-circle mx-1"
                                        title="Sửa">
                                         <i class="fa fa-edit"></i>
                                     </a>
+
                                     <span class="btn btn-icon btn-danger delete-btn btn-sm btn-icon-md btn-circle mx-1"
-                                          data-toggle="tooltip" data-placement="top" data-id="<%= dataUser[i].id %>" title="Xóa">
-                              <i class="fa fa-trash"></i>
-                        </span>
-                                </td>
+                                          data-toggle="tooltip" data-placement="top" data-id="<%= roles[i].id%>" title="Xóa">
+                                    <i class="fa fa-trash"></i>
+                                </span>
                                 </td>
                             </tr>
                         <% } %>

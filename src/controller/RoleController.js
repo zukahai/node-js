@@ -1,18 +1,18 @@
 import pool from "../configs/connectDB";
 import {getAll, _delete, find, add as abc, update} from "../services/UserService"
-import multer from 'multer';
+import {getAll as all_role, _delete as delete_role, add as add_role} from "../services/RoleService"
 
 let getHomePage = async (req, res) => {
     let message =  req.session.secret ? req.session.secret.message : null;
     delete req.session.secret;
-    let users = await getAll();
-    return res.render('admin/user/index.ejs', { dataUser: users, message: message })
+    let roles = await all_role();
+    return res.render('admin/role/index.ejs', { roles: roles, message: message })
 }
 
 let Delete = async (req, res) => {
     let id = req.params.id;
-    await _delete(id);
-    return res.redirect('/admin/user');
+    await delete_role(id);
+    return res.redirect('/admin/role');
 }
 
 let detail = async (req, res) => {
@@ -22,20 +22,21 @@ let detail = async (req, res) => {
 }
 
 let showCreatePage = async (req, res) => {
-    return res.render('admin/user/create.ejs')
+    return res.render('admin/role/create.ejs')
 }
 
 let create = async (req, res) => {
-    // console.log(req.body);
-    let { firstName, lastName, email, address } = req.body;
-    await abc([firstName, lastName, email, address]);
+    console.log(req.body);
+
+    let { role_name, description, color } = req.body;
+    await add_role([role_name, description, color]);
     req.session.secret = {
         message: {
             type: 'success',
-            text: 'Thêm thành công người dùng ' + lastName + ' ' + firstName
+            text: 'Thêm thành công quyền ' + role_name
         }
     }
-    return res.redirect('/admin/user');
+    return res.redirect('/admin/role');
 }
 
 let showEditPage = async (req, res) => {

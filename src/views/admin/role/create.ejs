@@ -1,4 +1,4 @@
-<% link = 'admin_user_index'; %>
+<% link = 'admin_user_create'; %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>User</title>
+    <title>Create User</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -44,50 +44,39 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4 mt-3 bg-light">
-<!--                content-->
-                <h1>Danh sách người dùng</h1>
-                <a href="/admin/user/create" class="btn btn-primary">Thêm người dùng</a>
-                <div style="overflow-x:auto;">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">FirstName</th>
-                            <th scope="col">LastName</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Address</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <% for (let i = 0; i < dataUser.length; i++) { %>
-                            <tr>
-                                <th scope="row"><%= dataUser[i].id %></th>
-                                <td><%= dataUser[i].firstName %></td>
-                                <td><%= dataUser[i].lastName %></td>
-                                <td><%= dataUser[i].email %></td>
-                                <td><%= dataUser[i].address %></td>
-                                <td>
-                                <td class="align-center justify-content-center">
-                                    <a href="/admin/user/detail/<%= dataUser[i].id %>" class="btn btn-sm btn-warning mx-1"
-                                       title="Xem">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                    <a href="/admin/user/edit/<%= dataUser[i].id %>" class="btn btn-icon btn-success btn-sm btn-icon-md btn-circle mx-1"
-                                       title="Sửa">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <span class="btn btn-icon btn-danger delete-btn btn-sm btn-icon-md btn-circle mx-1"
-                                          data-toggle="tooltip" data-placement="top" data-id="<%= dataUser[i].id %>" title="Xóa">
-                              <i class="fa fa-trash"></i>
-                        </span>
-                                </td>
-                                </td>
-                            </tr>
-                        <% } %>
-                        </tbody>
-                    </table>
-                </div>
+                <!--                content-->
+                <h1>Thêm quyền</h1>
+                <form action="" method="post" class="col col-lg-8">
+                    <div class="form-group my-2">
+                        <label for="username">Tên Role</label>
+                        <input type="text" class="form-control" id="role_name" name="role_name" placeholder="Tên Role">
+                    </div>
+
+                    <div class="form-group my-2">
+                        <label for="username">Mô tả</label>
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Mô tả" value="Đây là mô tả">
+                    </div>
+
+                    <%
+                        colors = ['danger', 'success', 'warning', 'info', 'dark', 'primary'];
+                    %>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2">Màu sắc: </label>
+                        <div class="col-sm-10">
+                            <% colors.forEach(function(color) { %>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="color" id="inlineRadio1" value="<%= color %>" <%= (color == 'danger') ? 'checked' : ''%>>
+                                <label class="form-check-label" for="inlineRadio1"><span class="badge bg-<%= color %>"><%= color %></span></label>
+                            </div>
+                            <% }); %>
+                        </div>
+                    </div>
+
+                    <div class="justify-content-center d-flex my-5">
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                    </div>
+                </form>
             </div>
         </main>
         <%- include('../../includes/footer'); -%>

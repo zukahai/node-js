@@ -1,6 +1,7 @@
 import express from "express";
 import UserController from '../controller/UserController';
 import HomeController from '../controller/HomeController';
+import RoleController from '../controller/RoleController';
 import multer from 'multer';
 import path from 'path';
 let appRoot = require('app-root-path');
@@ -56,6 +57,12 @@ const homeRouter = (app) => {
             user.post('/create', UserController.create)
             user.get('/upload', UserController.showUploadPage)
             user.post('/upload', upload.single('fileTest'), UserController.upload)
+        });
+        admin.group('/role', role => {
+            role.get('/', RoleController.getHomePage)
+            role.get('/delete/:id', RoleController.Delete)
+            role.get('/create', RoleController.showCreatePage)
+            role.post('/create', RoleController.create)
         });
     });
 
