@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "1adcf509-355b-490b-ba4e-8564eecb01e3",
+		"name": "NodeJS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "20765881"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/api/reset",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "List user",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Đức Hải\",\r\n    \"lastName\": \"Phan\",\r\n    \"email\": \"duchai2712@gmail.com\",\r\n    \"address\": \"Hà Tĩnh\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:2712/admin/user/create"
+			},
+			"response": []
+		}
+	]
+}
