@@ -31,7 +31,7 @@ const imageFilter = function(req, file, cb) {
 
 let upload = multer({ storage: storage, fileFilter: imageFilter });
 
-const homeRouter = (app) => {
+const HomeRouter = (app) => {
 
     root.group('/', home => {
         home.get('/', HomeController.getHomePage)
@@ -66,10 +66,16 @@ const homeRouter = (app) => {
         });
     });
 
+    root.group('/testAPI', admin => {
+        admin.get('/', (req, res) => {
+            return res.render('api/index.ejs')
+        });
+    });
+
 
 
 
     return app.use('/', root.export());
 }
 
-export default homeRouter;
+export default HomeRouter;
