@@ -3,7 +3,6 @@ import {getAll, _delete, find, add as abc, update, search} from "../services/Use
 import multer from 'multer';
 
 let getHomePage = async (req, res) => {
-    console.log(req.query.keyword == null);
     let message =  req.session.secret ? req.session.secret.message : null;
     delete req.session.secret;
     let users = (req.query.keyword == null) ? await getAll() : await search(req.query.keyword)
@@ -27,7 +26,7 @@ let showCreatePage = async (req, res) => {
 }
 
 let create = async (req, res) => {
-    // console.log(req.body);
+    console.log(req);
     let { firstName, lastName, email, address } = req.body;
     await abc([firstName, lastName, email, address]);
     req.session.secret = {
