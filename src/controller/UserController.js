@@ -1,11 +1,12 @@
 import pool from "../configs/connectDB";
-import {getAll, _delete, find, add as abc, update} from "../services/UserService"
+import {getAll, _delete, find, add as abc, update, search} from "../services/UserService"
 import multer from 'multer';
 
 let getHomePage = async (req, res) => {
+    console.log(req.query.keyword == null);
     let message =  req.session.secret ? req.session.secret.message : null;
     delete req.session.secret;
-    let users = await getAll();
+    let users = (req.query.keyword == null) ? await getAll() : await search(req.query.keyword)
     return res.render('admin/user/index.ejs', { dataUser: users, message: message })
 }
 

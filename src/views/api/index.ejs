@@ -1,24 +1,13 @@
 <html lang="en-US">
 <head>
-    <title>Weather</title>
+    <title>Test API</title>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Role - Admin</title>
-
-    <h1>Get Weather Conditions From Anywhere!</h1>
-    <label for="location">Enter a location:</label>
-    <input id="location" type="text">
-    <button class="btn-success" id="weatherLocation">Get Current Temperature and Humidity</button>
-    <div class="showErrors"></div>
-    <div class="showHumidity"></div>
-    <div class="showTemp"></div>
+    <div id="data">
+        Hello
+    </div>
 </div>
 
 <script>
@@ -32,7 +21,7 @@
             request.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
                     const response = JSON.parse(this.responseText);
-                    getElements(response.message);
+                    getElements(response);
                 }
             };
 
@@ -40,7 +29,16 @@
             request.send();
 
             function getElements(response) {
-                console.log(response);
+                let data = response.data;
+                let html = "";
+                for (let x in data[0]) {
+                    html = html + "" + data[0][x] + "";
+                }
+                console.log(html);
+                html = html + "@";
+                console.log(html);
+                document.getElementById("data").innerHTML = html;
+                console.log(data);
             }
     });
 </script>

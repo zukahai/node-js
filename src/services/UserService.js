@@ -5,6 +5,15 @@ export async function getAll(){
     return rows;
 }
 
+export async function search(keyword){
+    const [rows, fields] = await pool.execute('SELECT * FROM users WHERE ' +
+        'firstName LIKE \'%' + keyword +'%\'' +
+        ' OR lastName LIKE \'%' +keyword +'%\'' +
+        ' OR email LIKE \'%'+keyword+'%\'' +
+        ' OR address LIKE \'%'+keyword+'%\'');
+    return rows;
+}
+
 export async function _delete(id){
     await pool.execute('DELETE FROM users WHERE id = ?', [id]);
     return id;
