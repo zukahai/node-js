@@ -12,14 +12,22 @@ export function pthh(str){
 
     let result = [];
 
-    const data = {};
+    const dataLeft = {};
     for (let x in left) {
-        data[left[x]] = component_analysis(left[x]);
+        dataLeft[left[x]] = component_analysis(left[x]);
+    }
+
+    const dataRight = {};
+    for (let x in right) {
+        dataRight[right[x]] = component_analysis(right[x]);
     }
     return {
         left: left,
         right: right,
-        data: data,
+        data: {
+            dataLeft: dataLeft,
+            dataRight: dataRight,
+        },
         hello: component_analysis("Cu(OH)2")
     }
 }
