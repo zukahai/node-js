@@ -6,6 +6,10 @@ import {
     update as updateUser, update
 } from "../services/UserService";
 
+import {
+    pthh
+} from "../services/PTHHService";
+
 let allUser = async (req, res) => {
     let users = await getAllUser();
     return res.status(200).json({
@@ -56,11 +60,22 @@ let deleteAPI = async (req, res) => {
     })
 }
 
+let pthhAPI = async (req, res) => {
+    let str = req.body.pthh;
+    let result = pthh(str);
+
+    return res.status(200).json({
+        result: result,
+        time_delete: new Date(),
+    })
+}
+
 
 module.exports = {
     allUser,
     findUserAPI,
     createUserAPI,
     editUserAPI,
-    deleteAPI
+    deleteAPI,
+    pthhAPI
 }

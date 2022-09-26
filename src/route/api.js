@@ -15,6 +15,9 @@ const APIRouter = (app) => {
             user.post('/edit/:id', APIController.editUserAPI)
             user.get('/delete/:id', APIController.deleteAPI);
         });
+        api.group('/pthh', user => {
+            user.post('/', APIController.pthhAPI);
+        });
     });
 
     return app.use('/', root.export());
