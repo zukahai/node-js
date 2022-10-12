@@ -2,6 +2,7 @@ import express from "express";
 import UserController from '../controller/UserController';
 import HomeController from '../controller/HomeController';
 import RoleController from '../controller/RoleController';
+import TestAPIController from '../controller/TestAPIController';
 import multer from 'multer';
 import path from 'path';
 let appRoot = require('app-root-path');
@@ -64,6 +65,10 @@ const HomeRouter = (app) => {
             role.get('/create', RoleController.showCreatePage)
             role.post('/create', RoleController.create)
         });
+    });
+
+    root.group('/pthh', admin => {
+        admin.get('/', TestAPIController.index);
     });
 
     root.group('/testAPI', admin => {

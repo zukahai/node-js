@@ -1,7 +1,7 @@
 <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" action="" method="GET">
     <div class="input-group">
         <input name="keyword" class="form-control" type="text" placeholder="Tìm kiếm..." aria-label="Search for..." aria-describedby="btnNavbarSearch"
-        value="<%= keyword %>"/>
+        value="<%= ((typeof keyword != "undefined") ? keyword : "") %>"/>
         <button class="btn btn-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
     </div>
 </form>
