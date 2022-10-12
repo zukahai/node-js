@@ -5,7 +5,7 @@ let index = (req, res) => {
     return res.render('api/pthh.ejs')
 }
 
-let   solve = async (req, res) => {
+let solve = async (req, res) => {
     const { pthh } = req.body;
     let result = "";
     await axios.post('https://api-balance-chemical-equations.herokuapp.com/api/v1/pthh', {
