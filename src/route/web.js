@@ -69,6 +69,7 @@ const HomeRouter = (app) => {
 
     root.group('/pthh', admin => {
         admin.get('/', TestAPIController.index);
+        admin.post('/', TestAPIController.solve);
     });
 
     root.group('/testAPI', admin => {

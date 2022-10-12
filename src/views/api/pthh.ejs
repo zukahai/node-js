@@ -40,7 +40,17 @@
         <main>
             <div class="container-fluid px-4 mt-3 bg-light">
                 <!--                content-->
-                Hello
+                <form action="" method="post" class="col col-lg-8">
+                    <div class="form-group my-2">
+                        <label for="pthh">PTHH</label>
+                        <input type="text" class="form-control" id="pthh" name="pthh" placeholder="H2 + O2 = H2O"
+                        value="H2 + O2 = H2O">
+                    </div>
+                    <div class="justify-content-center d-flex my-5">
+                        <button type="submit" class="btn btn-primary">Cân bằng</button>
+                    </div>
+                </form>
+                <h1> <%= ((typeof result != "undefined") ? result : "") %></h1>
             </div>
         </main>
         <%- include('../includes/footer'); -%>
